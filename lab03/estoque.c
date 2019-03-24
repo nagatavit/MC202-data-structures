@@ -11,9 +11,12 @@ Estoque criaEstoqueVazio(){
 
 Estoque adicionaProduto(Estoque estoque, Produto prod){
 
+  // Caso numero de produtos seja maximo, retorna
+  // estoque sem adicionar produto
   if (estoque.num_produtos == MAX_PRODUTO_ESTOQUE)
     return (estoque);
 
+  // Adiciona produto
   estoque.produtos[estoque.num_produtos] = prod;
   estoque.num_produtos++;
 
@@ -23,6 +26,7 @@ Estoque adicionaProduto(Estoque estoque, Produto prod){
 Produto procuraProduto(Estoque estoque, char nome[]){
   int i;
 
+  // Busca linear pelo produto
   for (i = 0; i < estoque.num_produtos; i++)
     if (strcmp(estoque.produtos[i].nome, nome) == 0)
       return (estoque.produtos[i]);

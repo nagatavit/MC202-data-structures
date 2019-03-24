@@ -1,3 +1,14 @@
+/* ===========================================================================
+ * MC202-E 1S2019 lab03 - Controle de estoque
+ * Vitor Nagata - RA 178499
+ *
+ * DESCRIPTION: dado a quantidade de estoque e a quantiade de produtos desejados
+ * ter em estoque, imprime o preco dos produtos necessarios a serem comprados
+ *
+ * RETURN VALUE: 0 - se bem sucedido
+ *
+ * ===========================================================================*/
+
 #include <stdio.h>
 #include "data.h"
 #include "produto.h"
@@ -15,13 +26,17 @@ int main(){
 
   hoje = leData();
 
+  // Le quantidade de produtos em estoque
   scanf("%d", &numProdEstoque);
 
+  // Le produtos em estoque
   for (i = 0; i < numProdEstoque; i++)
     estoque = adicionaProduto(estoque, leProduto());
 
+  // Le quantidade de estoque desejado
   scanf("%d", &quantEstoqueDesejada);
 
+  // Le produtos desejados e imprime valores
   for (i = 0; i < quantEstoqueDesejada; i++){
 
     // Le qual produto e quantidade desejada
@@ -36,6 +51,22 @@ int main(){
 
   return (0);
 }
+
+/* ===========================================================================
+ * FUNCTION: calculaquantidadecompras
+ *
+ * DESCRIPTION: calcula quantidade de produtos a serem comprados
+ *
+ * PARAMETERS:
+ * prodEmEstoque - produtos em estoque
+ * quantidadeDesejada - quantidade de produtos desejado em estoque
+ * hoje - data atual
+ *
+ * DEPENDENDECIES: produtoEstaVencido
+ *
+ * RETURN VALUE: quantidade a ser comprada
+ *
+ * ===========================================================================*/
 
 int calculaQuantidadeCompras(Produto prodEmEstoque, int quantidadeDesejada, Data hoje){
 
@@ -54,6 +85,21 @@ int calculaQuantidadeCompras(Produto prodEmEstoque, int quantidadeDesejada, Data
       return (quantidadeDesejada - prodEmEstoque.quantidade);
   }
 }
+
+/* ===========================================================================
+ * FUNCTION: imprimecompraproduto
+ *
+ * DESCRIPTION: imprime nome do produto e valor necessario
+ *
+ * PARAMETERS:
+ * prod - produto a ser comprado
+ * quantidade - quantidade a ser comprada
+ *
+ * DEPENDENDECIES: nenhuma
+ *
+ * RETURN VALUE: nenhum
+ *
+ * ===========================================================================*/
 
 void imprimeCompraProduto(Produto prod, int quantidade){
   printf("%s %.2f\n", prod.nome, quantidade*prod.preco);
