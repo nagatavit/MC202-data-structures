@@ -52,7 +52,7 @@ int main(){
   for (i = 0; i < n; i++)
     retangulo_transladar(ataque_box[i], ataque_vet[i]);
   for (i = 0; i < m; i++)
-    retangulo_transladar(ataque_box[i], ataque_vet[i]);
+    retangulo_transladar(adversario_box[i], adversario_vet[i]);
 
   /* ======================================
    * checa se ha interseccao nos retangulos
@@ -63,9 +63,12 @@ int main(){
     for (j = 0; j < m; j++){
       interseccao = retangulo_interseccao(ataque_box[i], adversario_box[j]);
       area_atual = retangulo_area(interseccao);
+
       if ((area_atual > area_max) && retangulo_intersectam(interseccao, tela))
         area_max = area_atual;
-      free(interseccao);
+
+      if (interseccao != NULL)
+        retangulo_destruir(interseccao);
     }
   }
 
@@ -84,8 +87,8 @@ int main(){
   }
 
   for (i = 0; i < m; i++){
-    retangulo_destruir(ataque_box[i]);
-    vetor_destruir(ataque_vet[i]);
+    retangulo_destruir(adversario_box[i]);
+    vetor_destruir(adversario_vet[i]);
   }
 
   free(ataque_box);

@@ -5,8 +5,8 @@
 retangulo* retangulo_criar(double px, double py, double qx, double qy){
   retangulo *retangulo_p = malloc(sizeof *retangulo_p);
 
-  retangulo_p->sup_esq = malloc(sizeof retangulo_p->sup_esq);
-  retangulo_p->inf_dir = malloc(sizeof retangulo_p->inf_dir);
+  retangulo_p->sup_esq = malloc(sizeof *(retangulo_p->sup_esq));
+  retangulo_p->inf_dir = malloc(sizeof *(retangulo_p->inf_dir));
 
   retangulo_p->sup_esq->x = px;
   retangulo_p->sup_esq->y = py;
@@ -33,10 +33,17 @@ double retangulo_altura(retangulo const* r){
 }
 
 double retangulo_area(retangulo const* r){
+  double area;
+
   if (r  == NULL)
     return -1;
 
-  return retangulo_altura(r) * retangulo_largura(r);
+  area = retangulo_altura(r) * retangulo_largura(r);
+
+  if (area <= 0)
+    return -1;
+  else
+    return area;
 }
 
 void retangulo_transladar(retangulo* r, vetor const* v){
