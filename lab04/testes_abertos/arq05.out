@@ -1,1 +1,8 @@
+retangulo ataque 0:
+antes: (3.00 15.00), (4.00 10.00):
+depois: (3.00 7.00), (4.00 2.00):
+retangulo defesa 0:
+antes: (9.00 4.00), (14.00 3.00):
+depois: (1.00 4.00), (6.00 3.00):
+Area atual: 1.00
 1.00

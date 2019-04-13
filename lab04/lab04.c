@@ -4,7 +4,7 @@
 #include "vetor.h"
 
 int main(){
-  retangulo *tela, **ataque_box, **adversario_box, *interseccao;
+  retangulo *tela, **ataque_box, **adversario_box, *interseccao;//, *inter_tela;
   vetor **ataque_vet, **adversario_vet;
   double x0,y0,x1,y1,v_x,v_y;
   double area_atual, area_max = -1;
@@ -49,10 +49,18 @@ int main(){
   /* ==================================
    * aplicacao dos vetores de movimento
    * ================================== */
-  for (i = 0; i < n; i++)
+  for (i = 0; i < n; i++){
+    printf("retangulo ataque %d:\n", i);
+    /* printf("antes: (%.2f %.2f), (%.2f %.2f):\n", ataque_box[i]->sup_esq->x, ataque_box[i]->sup_esq->y, ataque_box[i]->inf_dir->x, ataque_box[i]->inf_dir->y); */
     retangulo_transladar(ataque_box[i], ataque_vet[i]);
-  for (i = 0; i < m; i++)
+    /* printf("depois: (%.2f %.2f), (%.2f %.2f):\n", ataque_box[i]->sup_esq->x, ataque_box[i]->sup_esq->y, ataque_box[i]->inf_dir->x, ataque_box[i]->inf_dir->y); */
+  }
+  for (i = 0; i < m; i++){
+    printf("retangulo defesa %d:\n", i);
+    /* printf("antes: (%.2f %.2f), (%.2f %.2f):\n", adversario_box[i]->sup_esq->x, adversario_box[i]->sup_esq->y, adversario_box[i]->inf_dir->x, adversario_box[i]->inf_dir->y); */
     retangulo_transladar(adversario_box[i], adversario_vet[i]);
+    /* printf("depois: (%.2f %.2f), (%.2f %.2f):\n", adversario_box[i]->sup_esq->x, adversario_box[i]->sup_esq->y, adversario_box[i]->inf_dir->x, adversario_box[i]->inf_dir->y); */
+  }
 
   /* ======================================
    * checa se ha interseccao nos retangulos
@@ -62,14 +70,19 @@ int main(){
   for (i = 0; i < n; i++){
     for (j = 0; j < m; j++){
       interseccao = retangulo_interseccao(ataque_box[i], adversario_box[j]);
+
+      if (interseccao == NULL)
+        break;
+      /* inter_tela = retangulo_interseccao(interseccao, tela); */
       area_atual = retangulo_area(interseccao);
+      printf("Area atual: %.2f\n", area_atual);
 
-      if ((area_atual > area_max) && retangulo_intersectam(interseccao, tela))
+      if ((area_atual > area_max) && retangulo_intersectam(interseccao, tela)){
         area_max = area_atual;
-
+      }
       if (interseccao != NULL)
         retangulo_destruir(interseccao);
-    }
+      }
   }
 
   if (area_max < 0)

@@ -29,7 +29,8 @@ double retangulo_largura(retangulo const* r){
 }
 
 double retangulo_altura(retangulo const* r){
-  return r->sup_esq->y - r->inf_dir->y;
+  double alt = r->sup_esq->y - r->inf_dir->y;
+  return alt;
 }
 
 double retangulo_area(retangulo const* r){
@@ -68,7 +69,7 @@ int intervalo_interseca(double menor_p1, double maior_p1,
 int retangulo_intersectam(retangulo const* a, retangulo const* b){
   // Verifica intervalo em x
   if (intervalo_interseca(a->sup_esq->x, a->inf_dir->x, b->sup_esq->x, b->inf_dir->x)
-      ||
+      &&
       // Verifica intervalo em y
       intervalo_interseca(a->inf_dir->y, a->sup_esq->y, b->inf_dir->y, b->sup_esq->y))
     return 1;

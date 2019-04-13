@@ -1,1 +1,7 @@
+retangulo ataque 0:
+antes: (0.00 2.00), (2.00 0.00):
+depois: (1.00 2.00), (3.00 0.00):
+retangulo defesa 0:
+antes: (4.00 2.00), (6.00 0.00):
+depois: (3.00 2.00), (5.00 0.00):
 null
