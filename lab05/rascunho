@@ -1,0 +1,103 @@
+primeira iteracao (hexagono)
+F+
+
+segunda iteracao
+F-F+F +
+
+terrceira iteracao
+F-F+F + (F+++F)+F + F-F+F +
+
+quarta iteracao
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+
+quinta iteracao
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+[F-F+F + F(+++(F+F+F - F+F+F - F+F+F - F+F+F - F+F+F - F+F+F)+++)F+F + F-F+F]+F +
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+
+
+============================================
+
+primeira iteracao (hexagono)
+F+F+F+F+F+F+
+
+segunda iteracao
+(F-F)+F + (F-F)+F + (F-F)+F + (F-F)+F + (F-F)+F + (F-F)+F +
+
+terrceira iteracao
+F-F+F + (F+++F)+F + F-F+F +
+
+quarta iteracao
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+
+quinta iteracao
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+[F-F+F + F(+++(F+F+F - F+F+F - F+F+F - F+F+F - F+F+F - F+F+F)+++)F+F + F-F+F]+F +
+F-F+F + (F+++F)+F + F-F+F + (F-(F+F+F+F+F+F)-F)+F + F-F+F + (F+++F)+F + F-F+F +
+============================================
+
+zerezima iteracao
+F + F
+
+primeira iteracao
+F (+F-F+) F
+
+segunda iteracao
+F ((+F-F+) F (+F+++F+) F (+F-F+)) F
+
+terceira iteracao
+F (
+(+F-F+) F (+F+++F+) F (+F-F+)
+F
+(+F-F+) F (+F-F+ F+F+F+F +F-F+) F (+F-F+)
+F
+(+F-F+) F (+F+++F+) F (+F-F+)
+) F
+
+segunda iteracao
+F ((+F-F+) F (+F+++F+) F (+F-F+)) F
+
+terceira iteracao (segunda tentativa)
+F
+===========================
++F-F+
+F
++F+++F+
+F
++F-F+
+===========================
+F
+===========================
++F-F+
+---------------------------
+F
++F+F+
+F
+---------------------------
++F-F+
+===========================
+F
+===========================
++F-F+
+F
++F+++F+
+F
++F-F+
+===========================
+F
+
+
+Regras:
++ -> (+F-F+)
+- -> (+F+++F+)
++ (entre dois outros +) -> (F+F+F+F)
+
+
+======================================
+gelo
+
+1
+F+F+F+F
+
+2
+FF+F++F+F +
