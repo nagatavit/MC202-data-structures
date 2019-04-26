@@ -245,7 +245,7 @@ void fractal_diamante(imagem_p img, int l, int angle, int depth, int fractal_typ
      */
     if (fractal_type == FRACTAL_TYPE_CONCAVE_CORNER)
       angle = -angle;
-    if (fractal_type == FRACTAL_TYPE_LINE)
+    else if (fractal_type == FRACTAL_TYPE_LINE)
       angle = 3*angle;
     girar_cabeca(img, angle);
     return;
@@ -270,7 +270,7 @@ void fractal_diamante(imagem_p img, int l, int angle, int depth, int fractal_typ
     fractal_diamante(img, l, angle, depth - 1, FRACTAL_TYPE_CONVEX_CORNER);
     return;
   } else if (fractal_type == FRACTAL_TYPE_LINE){
-    /* caso geral 3: caso a quina seja uma reta, fazer um hexagono (volta
+    /* caso geral 3: caso a quina seja o fim de uma reta, fazer um hexagono (volta
      * para o caso inicial). (+++) -> (+F+F+)
      */
     fractal_diamante(img, l, angle, depth - 1, FRACTAL_TYPE_CONVEX_CORNER);
