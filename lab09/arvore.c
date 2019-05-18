@@ -2,74 +2,94 @@
 #include <stdlib.h>
 #include "arvore.h"
 
-tree_node_p create_node(){
-    tree_node_p new_node = malloc(sizeof * new_node);
-
-    /* not possible to allocate memory */
-    if (new_node == NULL)
-        return NULL;
-
-    /* initialize all parameters as zero */
-    new_node->ship_id = 0;
-    new_node->strikes = 0;
-    new_node->left = NULL;
-    new_node->right = NULL;
-
-    return new_node;
+tree_node_p create_tree(){
+    return NULL;
 }
 
-tree_node_p read_inorder(int size){
+int is_red(tree_node_p root){
+    if (root == NULL)
+        return 0;
+    return root->color == RED;
+}
+
+int is_black(tree_node_p root){
+    if (root == NULL)
+        return 1;
+    return root->color == BLACK;
+}
+
+tree_node_p rotate_left(tree_node_p root){
+    tree_node_p x = root->right;
+
+    root->right = x->left;
+    x->left = root;
+    x->color = root->color;
+    root->color = RED;
+    return x;
+}
+
+tree_node_p rotate_right(tree_node_p root){
+    tree_node_p x = root->left;
+
+    root->left = x->right;
+    x->right = root;
+    x->color = root->color;
+    root->color = RED;
+    return x;
+}
+
+void rise_red(tree_node_p root){
+    root->color = RED;
+    root->left->color = BLACK;
+    root->right->color = BLACK;
+}
+
+tree_node_p insert_node(tree_node_p root, int value){
     tree_node_p new_node;
 
-    if (size <= 0){
-        /* base case: NULL leaf */
-        return NULL;
-    } else {
-        /* general case:
-         * read left subtree
-         * read current node
-         * read right subtree
-         */
-        new_node = create_node();
-
-        new_node->left = read_inorder(size/2);
-        scanf("%d", &new_node->ship_id);
-        new_node->right = read_inorder(size/2);
-
+    if (root == NULL){
+        new_node = malloc(sizeof * new_node);
+        new_node->left = NULL;
+        new_node->right = NULL;
+        new_node->value = value;
+        new_node->color = RED;
         return new_node;
+    } else if (root->value > value) {
+        root->left = insert_node(root->left, value);
+    } else {
+        root->right = insert_node(root->right, value);
     }
+
+    if (is_red(root->right) && is_black(root->left))
+        root = rotate_left(root);
+    if (is_red(root->left) && is_red(root->left->left))
+        root = rotate_right(root);
+    if (is_red(root->left) && is_red(root->right))
+        rise_red(root);
+
+    return root;
 
 }
 
+tree_node_p insert(tree_node_p root, int value){
+    root = insert_node(root, value);
+    root->color = BLACK;
+    return root;
+}
 
-void print_preorder(tree_node_p root){
+void print_inorder_inverse(tree_node_p root, int processors){
+    static int times_printed = 0;
     /* base case: NULL - do nothing*/
 
     /* general case: prints preorder*/
     if (root != NULL){
-        printf("%d %d\n", root->ship_id, root->strikes);
-        print_preorder(root->left);
-        print_preorder(root->right);
+        print_inorder_inverse(root->right, processors);
+        if (times_printed < processors){
+            printf("%d\n", root->value);
+            times_printed++;
+        }
+        print_inorder_inverse(root->left, processors);
     }
-}
-
-tree_node_p find_node(tree_node_p root, int x){
-    /* base case: node found*/
-    if (root == NULL || root->ship_id == x)
-        return root;
-    /*general cases: search in the subtrees*/
-    else if (root->ship_id > x)
-        return find_node(root->left, x);
-    else
-        return find_node(root->right, x);
-}
-
-void strike_ship(tree_node_p root, int x){
-    tree_node_p striked_node;
-    /* find the damaged nodes*/
-    striked_node = find_node(root, x);
-    /* adds to the counter of damages*/
-    striked_node->strikes++;
 }
 
 void delete_tree(tree_node_p root){
