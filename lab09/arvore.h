@@ -8,7 +8,6 @@
  * DEPENDENDECIES: none
  *
  * RETURN VALUE: N/A
- *
  * ===========================================================================*/
 
 #ifndef ARVORE_H_
@@ -23,7 +22,6 @@
  * value = wait time of given process
  *
  * DEPENDENDECIES: none
- *
  * ===========================================================================*/
 
 enum color {RED, BLACK};
@@ -35,6 +33,8 @@ typedef struct tree_node {
 } tree_node;
 
 typedef tree_node *tree_node_p;
+
+
 
 tree_node_p create_tree();
 tree_node_p insert_node(tree_node_p root, int value);
