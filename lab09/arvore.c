@@ -47,6 +47,7 @@ void rise_red(tree_node_p root){
 tree_node_p insert_node(tree_node_p root, int value){
     tree_node_p new_node;
 
+    /* tree is null, insert new node here */
     if (root == NULL){
         new_node = malloc(sizeof * new_node);
         new_node->left = NULL;
@@ -55,15 +56,24 @@ tree_node_p insert_node(tree_node_p root, int value){
         new_node->color = RED;
         return new_node;
     } else if (root->value > value) {
+    /* root is bigger than value, insert to the left */
         root->left = insert_node(root->left, value);
     } else {
+    /* root is less than value, insert to the right */
         root->right = insert_node(root->right, value);
     }
 
+    /* Correct the colors, except for the root */
+
+    /* only rightchild is red */
     if (is_red(root->right) && is_black(root->left))
         root = rotate_left(root);
+
+    /* left child is red and his left child is also red*/
     if (is_red(root->left) && is_red(root->left->left))
         root = rotate_right(root);
+
+    /* both childs are red */
     if (is_red(root->left) && is_red(root->right))
         rise_red(root);
 
@@ -84,10 +94,13 @@ void print_inorder_inverse(tree_node_p root, int processors){
     /* general case: prints preorder*/
     if (root != NULL){
         print_inorder_inverse(root->right, processors);
+
+        /* prints only the amount of processors running */
         if (times_printed < processors){
             printf("%d\n", root->value);
             times_printed++;
         }
+
         print_inorder_inverse(root->left, processors);
     }
 }

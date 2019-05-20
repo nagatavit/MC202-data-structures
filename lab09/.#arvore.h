@@ -1,1 +1,0 @@
-nagata@nagata-Ubuntu.9480:1558285959
